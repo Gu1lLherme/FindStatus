@@ -2,8 +2,8 @@ import pandas as pd
 import tratamentoDados as td
 
 # Caminho dos arquivos
-arquivo_referencia = 'src\\Tabelas\\.TabelaReferencia\\Suplementos Aracaju com Endereco.csv'
-arquivo_consulta   = 'C:\\Users\\gesbarreto\\Downloads\\FindStatus\\src\\Tabelas\\TabelaConsulta\\estabelecimentos_suplemento_em_Aracaju.csv'
+arquivo_referencia = 'C:\\Users\\gesbarreto\\Downloads\\FindStatus\\src\\Tabelas\\.TabelaReferencia\\Suplementos Aracaju com Endereco.csv'
+arquivo_consulta   = 'C:\\Users\\gesbarreto\\Downloads\\FindStatus\\src\\Tabelas\\TabelaConsulta\\estabelecimentos_suplemento em Aracaju.csv'
 
 
 # 1. ABRIR O ARQUIVO
@@ -32,9 +32,12 @@ resultados = []
 for index_b, linha_b in tabela_consulta.iterrows():
     encontrado = False
     for index_a, linha_a in tabela_referencia.iterrows():
-        if (linha_b['CEP'] == linha_a['CEP']):
-            encontrado = True
-            break
+        
+        if (linha_b['CEP'] == linha_a['CEP'] and linha_b['BAIRRO'] == linha_a ['BAIRRO'] and linha_b['LOGRADOURO'] == linha_a['LOGRADOURO-TEXTO']):
+                encontrado = True
+                break
+    
+    
     if encontrado:
         resultados.append({'NOME DO ESTABELECIMENTO': linha_b['NOME DO ESTABELECIMENTO'],
                            'LOGRADOURO': linha_b['LOGRADOURO'],
@@ -49,13 +52,15 @@ for index_b, linha_b in tabela_consulta.iterrows():
                            'BAIRRO': linha_b['BAIRRO'],
                            'CEP': linha_b['CEP'],
                            'ENCONTRADO': 'Não Encontrado'})
+        
+        
 
 # Salvar dados processados
 tabela_resultado = pd.DataFrame(resultados)
 td.save_data(tabela_resultado, 'Suplementos Aracaju com Endereço')
 
 
-print('Comparação concluída. O resultado foi salvo em tabela_resultados.csv')
+print('Comparação concluída. O resultado foi salvo em Resultados/CSV/')
 
 
 
