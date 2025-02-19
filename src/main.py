@@ -33,9 +33,12 @@ for index_b, linha_b in tabela_consulta.iterrows():
     encontrado = False
     for index_a, linha_a in tabela_referencia.iterrows():
         
-        if (linha_b['CEP'] == linha_a['CEP'] and linha_b['BAIRRO'] == linha_a ['BAIRRO'] and linha_b['LOGRADOURO'] == linha_a['LOGRADOURO-TEXTO']):
-                encontrado = True
-                break
+        if ((linha_b['CEP'] == linha_a['CEP']) and 
+            (linha_b['BAIRRO'] == linha_a ['BAIRRO']) and 
+            (linha_b['LOGRADOURO'] in linha_a['LOGRADOURO-TEXTO'])):
+            print('Encontrado: ', linha_b['LOGRADOURO'])     
+            encontrado = True
+            break
     
     
     if encontrado:
