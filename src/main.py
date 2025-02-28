@@ -45,7 +45,8 @@ tabela_consulta   = pd.read_csv(arquivo_consulta, sep=';', on_bad_lines='skip')
 # =============================================================================
 # 2. TRATAMENTO DOS DADOS - EXTRAÇÃO E PADRONIZAÇÃO DOS ENDEREÇOS
 # =============================================================================
-
+         #
+         
 # Para a tabela de referência, extraímos os componentes do endereço
 # Supondo que a função td.extrair_endereco retorne uma tupla ou lista no formato (logradouro_texto, numero)
 tabela_referencia[["LOGRADOURO-TEXTO", "NUMERO"]] = tabela_referencia["LOGRADOURO"].apply(
