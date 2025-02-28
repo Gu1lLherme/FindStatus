@@ -2,20 +2,6 @@ import re
 import pandas as pd
 
 # ==================== SAVE DATA ====================
-def create_data_frame(data):
-    # Cria o DataFrame com os dados coletados
-    DataFrame = pd.DataFrame(data,
-    columns=[
-        "NOME DO ESTABELECIMENTO",
-        "MED.AVALIACOES",
-        "QNT.AVALIACOES",
-        "TIPO DE ESTABELECIMENTO", 
-        "CONTATO DO ESTABELECIMENTO",
-        "ENDERECO COMPLETO",
-    ],
-    )
-    return DataFrame
-
 
 def dados_format(dataFrame):
     
@@ -68,7 +54,7 @@ def extrair_endereco(endereco):
     
     if cep_match:
         cep = cep_match.group(0).strip().replace("-", " ")
-        cep = cep.replace(" ", "")
+        cep = str(cep.replace(" ", ""))
     
     return logradouro, numero
 
